@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import useForm from "../../hooks/useForm";
 import { getUserByEmailAndPassword } from "../../services/userServices";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,7 +37,7 @@ const Login = ({setUser}) => {
         if (user) {
             setUser(user)
             alert(`Bienvenid@ ${form.userName}`)
-            navigate('/register') // recodar enlazar con home
+            navigate('/home') // recodar enlazar con home
         } else {
             alert(`Verifique sus credenciales`)
         }
