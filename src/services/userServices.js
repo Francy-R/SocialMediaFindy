@@ -1,5 +1,25 @@
+import axios from "axios"
 import endpoints from "./endpoints";
-import axios from "axios";
+
+export const getAllUsers = async() =>{
+    try {
+        const {data} = await axios.get(endpoints.getAllUsers);
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+}
+
+export const getUser = async(idUser) =>{
+    try {
+        const {data} = await axios.get(endpoints.getUser(idUser));
+        return data
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
 
 
 

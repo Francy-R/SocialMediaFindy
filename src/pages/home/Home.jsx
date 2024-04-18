@@ -1,16 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import "../home/home.scss";
+import { PiChatsCircleBold } from "react-icons/pi";
+import { FaRegHeart } from "react-icons/fa";
+import findyLogo from "../../assets/findyLogo.png"
+import Carousel from "../../components/Carousel";
+
+export default function Home() {
 
 
-const Home = () => {
   return (
     <div>
-      hola
-      <h1>Regístrate <Link to="/register">aquí</Link></h1>
-      <h1>Ingresa <Link to="/login">aquí</Link></h1>
-      
+      <div className="home__header">
+        <img src={findyLogo} alt="logo" className="home__header-logo"/>
+        <div className="home__header-icons">
+          <FaRegHeart className="home__header-icons-icon" />
+          <PiChatsCircleBold className="home__header-icons-icon" />
+        </div>
+      </div>
+
+      <Carousel></Carousel>
     </div>
   );
-};
-
-export default Home;
+}
