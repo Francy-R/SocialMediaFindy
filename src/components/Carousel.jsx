@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import "../pages/home/home.scss";
-import {getAllUsers } from "../services/userServices";
+import { getAllUsers } from "../services/userServices";
+import { FaPlus } from "react-icons/fa";
 
 export default function Carousel() {
 
-    const IdUser = 1; // ID del usuario actual
+  const IdUser = 3; // ID del usuario actual
 
   const [users, setUsers] = useState([]);
   const [followingUsers, setFollowingUsers] = useState([]);
@@ -37,19 +38,24 @@ export default function Carousel() {
   }, []);
   return (
     <div className="home__stories">
-        <div className="home__story">
-          <figure className="home__story-figure">
-            <img src={userProfile} alt="user-profile" className="home__story-image" />
-            <figcaption className="home__story-caption">Your story</figcaption>
-          </figure>
-          
-        {followingUsers.map((user, index) => (
-            <figure className="home__story-figure" key={index}>
-              <img src={user.urlPerfil} alt={`user-${index}`} className="home__story-image-friends" />
-              <figcaption  className="home__story-caption">{user.nombre}</figcaption>
-            </figure>
-        ))}
+      <div className="home__story">
+        <div className="home__story-figure">
+          <div className="home__story-container">
+            <img src={userProfile} alt="user-profile" className="home__story-container-image" />
+            <FaPlus className="plus" />
+          </div>
+          <p className="home__story-caption">Your story</p>
         </div>
+
+        {followingUsers.map((user, index) => (
+          <div className="home__story-figure" key={index}>
+            <div className="home__story-container">
+              <img src={user.urlPerfil} alt={`user-${index}`} className="home__story-container-image-friends" />
+            </div>
+              <p className="home__story-caption">{user.nombre}</p>
+          </div>
+        ))}
       </div>
+    </div>
   )
 }

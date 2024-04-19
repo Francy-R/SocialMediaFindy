@@ -24,7 +24,7 @@ h1 {
     }
     @media (min-width: 481px) and (max-width: 768px) {
         &-logo {
-            width:60%;
+            width: 60%;
             height: 30%;
         }
     }
@@ -74,48 +74,62 @@ h1 {
             align-items: center;
         }
 
-        &-caption{
+        &-caption {
             font-weight: bold;
         }
 
-        &-image {
-            width: 8rem; 
-            height: 8rem; 
-            object-fit: cover;
-            border-radius: 50%; 
-            border: 5px solid #FF74B7;
-            filter: grayscale(100%) brightness(50%);
-            
-            
-            &-friends {
-                width: 8rem; 
-                height: 8rem; 
+        &-container {
+            cursor: pointer;
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            position: relative; /* Para posicionar el icono */
+            width: 8.5rem;
+            height: 8.5rem;
+            border-radius: 50%;
+            background: linear-gradient(to right, #ff7674 0%, #ff74b7 32%, #ff74fc 61%, #ffbc74 100%);
+
+            &-image {
+                width: 8rem;
+                height: 8rem;
                 object-fit: cover;
                 border-radius: 50%;
-                border: 5px solid #FF74B7;
-            }
-        }
-        @media (max-width: 480px) {
-            &-image {
-                width: 3rem; 
-                height: 3rem; 
-                &-friends {
-                    width: 3rem; 
-                    height: 3rem; 
-                }
-            }
-        }
-        @media (min-width: 481px) and (max-width: 768px) {
-            &-image {
-                width: 5rem; 
-                height: 5rem; 
-                &-friends {
-                    width: 5rem; 
-                    height: 5rem; 
-                }
-            }
-        }
-        
-    }
+                filter: grayscale(100%) brightness(50%);
+                
 
+                &-friends {
+                    width: 8rem;
+                    height: 8rem;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+            @media (max-width: 480px) {
+                &-image {
+                    width: 3rem;
+                    height: 3rem;
+                    &-friends {
+                        width: 3rem;
+                        height: 3rem;
+                    }
+                }
+            }
+            @media (min-width: 481px) and (max-width: 768px) {
+                &-image {
+                    width: 5rem;
+                    height: 5rem;
+                    &-friends {
+                        width: 5rem;
+                        height: 5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.plus {
+    position: absolute;
+    color: white;
+    font-size: 2rem;
 }
