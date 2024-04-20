@@ -60,13 +60,25 @@ h1 {
     display: flex;
     flex-direction: row;
 
+    /* Estilos para la barra de desplazamiento */
+    .home__story::-webkit-scrollbar {
+        width: 6px;
+        height: 10px;
+    }
+
+    .home__story::-webkit-scrollbar-thumb {
+        background: linear-gradient(to right, #ff7674 0%, #ff74b7 32%, #ff74fc 61%, #ffbc74 100%);
+        border-radius: 3px;
+    }
+
     .home__story {
         width: 100%;
         overflow: hidden;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
+        overflow-x: auto; 
+        justify-content: space-around;
+        gap: 0.5rem;
 
         &-figure {
             display: flex;
@@ -76,14 +88,22 @@ h1 {
 
         &-caption {
             font-weight: bold;
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        @media (max-width: 480px) {
+            &-caption {
+                font-size: 0.9rem;
+            }
         }
 
         &-container {
             cursor: pointer;
             display: flex;
-            justify-content: center; /* Centra horizontalmente */
-            align-items: center; /* Centra verticalmente */
-            position: relative; /* Para posicionar el icono */
+            justify-content: center;
+            align-items: center;
+            position: relative;
             width: 8.5rem;
             height: 8.5rem;
             border-radius: 50%;
@@ -95,7 +115,6 @@ h1 {
                 object-fit: cover;
                 border-radius: 50%;
                 filter: grayscale(100%) brightness(50%);
-                
 
                 &-friends {
                     width: 8rem;
@@ -104,17 +123,31 @@ h1 {
                     border-radius: 50%;
                 }
             }
-            @media (max-width: 480px) {
+        }
+        @media (max-width: 480px) {
+            &-container {
+                width: 4.4rem;
+                height: 4.4rem;
+                justify-content: space-around;
+                overflow: auto;
+
                 &-image {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 4rem;
+                    height: 4rem;
                     &-friends {
-                        width: 3rem;
-                        height: 3rem;
+                        width: 4rem;
+                        height: 4rem;
                     }
                 }
             }
-            @media (min-width: 481px) and (max-width: 768px) {
+        }
+        @media (min-width: 481px) and (max-width: 768px) {
+            &-container {
+                width: 5.4rem;
+                height: 5.4rem;
+                justify-content: space-around;
+                overflow: auto;
+
                 &-image {
                     width: 5rem;
                     height: 5rem;
@@ -132,4 +165,9 @@ h1 {
     position: absolute;
     color: white;
     font-size: 2rem;
+}
+@media (max-width: 480px) {
+    .plus {
+        font-size: 1.5rem;
+    }
 }
