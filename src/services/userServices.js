@@ -11,7 +11,7 @@ export const getAllUsers = async() =>{
     }
 }
 
-export const getAllPots = async() =>{
+export const getAllPosts = async() =>{
     try {
         const {data} = await axios.get(endpoints.getAllPosts);
         return data
