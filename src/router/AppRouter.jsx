@@ -4,11 +4,14 @@ import Login from "../pages/login/Login";
 import Register from "../pages/login/Register";
 import Index from "../pages/index/Index";
 import Home from "../pages/home/Home";
+import { PerfilContextProvider } from "../context/PerfilContext";
+import Friend from "../pages/friend/Friend";
 
 export const AppContext = createContext(null);
 
 const AppRouter = () => {
     const [user, setUser] = useState({})
+    
     return(
         <BrowserRouter>
             <Routes>
@@ -16,6 +19,8 @@ const AppRouter = () => {
                 <Route path="login" element={<Login setUser={setUser}/>} />
                 <Route path="register" element = {<Register />} />
                 <Route path="home" element ={<Home />} />
+                <Route path="perfil" element={<PerfilContextProvider><Friend /></PerfilContextProvider>} />
+                
             </Routes>
 
         </BrowserRouter>
