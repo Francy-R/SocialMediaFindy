@@ -19,7 +19,7 @@ const AppRouter = () => {
                 <Route path="login" element={<Login setUser={setUser}/>} />
                 <Route path="register" element = {<Register />} />
                 <Route path="home" element ={<Home />} />
-                <Route path="perfil" element={<PerfilContextProvider><Friend /></PerfilContextProvider>} />
+                <Route path="perfil/:id" element={<PerfilContextProvider><Friend /></PerfilContextProvider>} />
                 
             </Routes>
 

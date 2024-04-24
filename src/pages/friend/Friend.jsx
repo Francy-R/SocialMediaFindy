@@ -1,17 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getUser } from '../../services/userServices'; // Importamos la función getUser
 import { usePerfilContext } from '../../context/PerfilContext';
 import '../friend/friend.scss';
 import axios from 'axios';
 const Friend = () => {
-    const [usuario2, setUsuario] = useState([]); // Cambiamos a un solo usuario en lugar de una lista
+    const { id } = useParams();
+    const [usuario, setUsuario] = useState([]); // Cambiamos a un solo usuario en lugar de una lista
     const {state, dispatch } = usePerfilContext(); // Obtenemos el ID del usuario amigo del contexto
     const userAmigo = 2;
     const [following, setFollowing] = useState(false);
     const fetchData = useCallback(async () => {
         try {
             const response = await getUser(userAmigo); // Llamamos a getUser con el ID del usuario amigo
-            setUsuario(response);
+            console.log(response); 
+            setUsuario(response[0]);
         } catch (error) {
             console.error("Error fetching user:", error);
         }
@@ -21,15 +24,15 @@ const Friend = () => {
         fetchData();
     }, [fetchData]);
 
-    let usuario;
-    usuario = {...usuario2[0]};
-    console.log(usuario)
+    console.log(usuario);
+    /*
     useEffect(() => {
         if (usuario === null && typeof usuario.length == 'undefined') {
             console.log("Calma");
         }
     }, [usuario]);
     console.log(state)
+    */
     const updateFollowingArray = async (userId,userAmigo) => {
         try {
 
@@ -92,9 +95,6 @@ const Friend = () => {
     
     return (
         <div>
-            {usuario.length === null ? (
-                <p>Cargando...</p>
-            ) : (
                 <main key={usuario.id}>
                     <section className='Portada'>
                         <img src={usuario.urlBanner} className='imagenPortada' alt='Banner' />
@@ -129,7 +129,7 @@ const Friend = () => {
                         {/* Aquí puedes mostrar las publicaciones del usuario si lo deseas */}
                     </section>
                 </main>
-            )}
+        
         </div>
     );
 

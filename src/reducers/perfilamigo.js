@@ -8,7 +8,7 @@ const perfilAmigo = (state, action) => {
             const idAmigo = state.userAmigoId;
             return {
                 ...state,
-                userAmigoId: idAmigo // Actualiza el userAmigo en el estado con el usuario encontrado
+                userAmigoId: idAmigo 
                 
             };
             
