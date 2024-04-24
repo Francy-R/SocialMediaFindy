@@ -11,6 +11,16 @@ export const getAllUsers = async() =>{
     }
 }
 
+export const getAllPosts = async() =>{
+    try {
+        const {data} = await axios.get(endpoints.getAllPosts);
+        return data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+}
+
 export const getUser = async(idUser) =>{
     try {
         const {data} = await axios.get(endpoints.getUser(idUser));

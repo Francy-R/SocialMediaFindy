@@ -3,6 +3,7 @@ import { PiChatsCircleBold } from "react-icons/pi";
 import { FaRegHeart } from "react-icons/fa";
 import findyLogo from "../../assets/findyLogo.png"
 import Carousel from "../../components/Carousel";
+import Posts from "../../components/Posts";
 
 export default function Home() {
 
@@ -17,7 +18,8 @@ export default function Home() {
         </div>
       </div>
 
-      <Carousel></Carousel>
+      <Carousel />
+      <Posts />
     </div>
   );
 }
