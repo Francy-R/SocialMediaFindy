@@ -3,7 +3,7 @@ import { FaRegBookmark, FaRegHeart } from "react-icons/fa";
 import "../pages/home/home.scss";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { FiSend } from "react-icons/fi";
-import { getAllPosts, getAllUsers } from "../services/userServices";
+import { getAllPosts, getAllUsers, getCommentsCountForPost } from "../services/userServices";
 import { useAppContext } from "../context/AppContext";
 
 // const ActionTypes = {
@@ -32,10 +32,10 @@ export default function Posts() {
     posts: { posts, postsDispatch },
     users: { users, usersDispatch },
   } = useAppContext();
-  console.log(posts);
-  console.log(users);
+  
   // const [state, dispatch] = useReducer(reducer, initialState);
   const [usersLoaded, setUsersLoaded] = useState(false);
+  const [commentsLoaded, setCommentsLoaded] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -49,6 +49,22 @@ export default function Posts() {
     }
     fetchData();
   }, [postsDispatch, usersDispatch]);
+
+  useEffect(() => {
+    if (usersLoaded && posts.posts.length > 0 && users.users.length > 0 && !commentsLoaded) {
+      const updatePostsWithCommentsCount = async () => {
+        const updatedPosts = await Promise.all(
+          posts.posts.map(async (post) => {
+            const commentsCount = await getCommentsCountForPost(post.id);
+            return { ...post, commentsCount };
+          })
+        );
+        postsDispatch({ type: "FillPosts", payload: updatedPosts });
+        setCommentsLoaded(true); // Marcamos los comentarios como cargados
+      };
+      updatePostsWithCommentsCount();
+    }
+  }, [usersLoaded, posts, users, postsDispatch, commentsLoaded]); 
 
   useEffect(() => {
     // Verificamos si los usuarios se han cargado y las publicaciones han cambiado
@@ -78,47 +94,87 @@ export default function Posts() {
         });
       }
     }
-  }, [usersLoaded, posts, users, postsDispatch]);
+  }, [usersLoaded, posts, users, postsDispatch,]);
+
+  const getRandomNumber = () => {
+    return Math.floor(Math.random() * 100) + 1; // Genera un número aleatorio entre 1 y 100
+  };
 
   return (
     <div className="home__posts">
       {posts.posts.length
         ? posts.posts.map((post) => (
-            <div key={post.id}>
-              <div className="home__posts-header">
-                <div className="home__posts-header-user">
+            <div key={post.id} className="home__post">
+              <div className="home__post-content">
+                <div className="home__post-content-header">
+                  <div className="home__post-content-header-user">
+                    <img
+                      src={post.userPhoto}
+                      alt={post.userName}
+                      className="home__post-content-header-user-img"
+                    />
+                  </div>
+                  <b>{post.userName}</b>
+                </div>
+  
+                {/* Renderizado condicional del contenido basado en la categoría */}
+                {post.categoria === "Imagen" && (
                   <img
-                    src={post.userPhoto}
-                    alt={post.userName}
-                    className="home__posts-header-user-img"
+                    className="home__post-content-img"
+                    src={post.recursos[0]}
+                    alt="post"
                   />
+                )}
+                {post.categoria === "Album" && (
+                  <div className="album-container">
+                    {post.recursos.map((resource, index) => (
+                      <img
+                        key={index}
+                        className="album-image"
+                        src={resource}
+                        alt={`Imagen ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
+                {post.categoria === "Video" && (
+                  <iframe
+                    className="home__post-content-video"
+                    title="video"
+                    src={post.recursos[0]}
+                    frameborder="0"
+                    allowfullscreen
+                  ></iframe>
+                )}
+  
+                <div className="home__post-content-icons">
+                  <div>
+                    <FaRegHeart />
+                    <p>{post.likes.length}</p>
+                  </div>
+                  <div>
+                    <TbMessageCircle2 />
+                    <p>{post.commentsCount}</p>
+                  </div>
+                  <div>
+                    <FiSend />
+                    <p>{getRandomNumber()}</p>
+                  </div>
+                  <div>
+                    <FaRegBookmark />
+                  </div>
                 </div>
-                <b>{post.userName}</b>
-              </div>
-              <img src={post.recursos[0]} alt="post" />
-              <div className="home__posts-icons">
-                <div>
-                  <FaRegHeart />
-                  <p>2</p>
+  
+                <div className="home__post-content-footer">
+                  <p>
+                    <b>{post.userName}</b> {post.descripcion}
+                  </p>
                 </div>
-                <div>
-                  <TbMessageCircle2 />
-                  <p>2</p>
-                </div>
-                <div>
-                  <FiSend />
-                  <p></p>
-                </div>
-                <FaRegBookmark />
-              </div>
-              <div className="home__posts-footer">
-                <p>
-                  <b>{post.userName}</b> {post.descripcion}
-                </p>
               </div>
             </div>
           ))
         : null}
     </div>
   );
+  
 }

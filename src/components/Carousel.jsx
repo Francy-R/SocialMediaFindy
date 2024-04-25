@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../pages/home/home.scss";
 import { getAllUsers } from "../services/userServices";
 import { FaPlus } from "react-icons/fa";
+import { AppContext } from "../router/AppRouter";
 
 export default function Carousel() {
 
-  const IdUser = 3; // ID del usuario actual
+  const {user} = useContext(AppContext);
+  const IdUser = user.id; // ID del usuario actual
 
   const [users, setUsers] = useState([]);
   const [followingUsers, setFollowingUsers] = useState([]);
@@ -24,7 +26,6 @@ export default function Carousel() {
         if (currentUser) {
           setUserName(currentUser.nombre);
           setUserProfile(currentUser.urlPerfil);
-
           const followingIds = currentUser.seguidos || [];
           const following = allUsers.filter((user) => followingIds.includes(user.id));
           setFollowingUsers(following);
@@ -32,6 +33,7 @@ export default function Carousel() {
       } catch (error) {
         console.error(error);
       }
+      
     }
 
     fetchData();

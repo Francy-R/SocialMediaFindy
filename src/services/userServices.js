@@ -20,7 +20,7 @@ export const getAllPosts = async() =>{
         return []
     }
 }
-
+  
 export const getUser = async(idUser) =>{
     try {
         const {data} = await axios.get(endpoints.getUser(idUser));
@@ -30,6 +30,17 @@ export const getUser = async(idUser) =>{
         return null
     }
 }
+
+export const getCommentsCountForPost = async (postId) => {
+    try {
+        const { data } = await axios.get(endpoints.getCommentsByPostId(postId));
+        return data.length;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
 
 
 
