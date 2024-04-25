@@ -32,8 +32,7 @@ export default function Posts() {
     posts: { posts, postsDispatch },
     users: { users, usersDispatch },
   } = useAppContext();
-  console.log(posts);
-  console.log(users);
+  
   // const [state, dispatch] = useReducer(reducer, initialState);
   const [usersLoaded, setUsersLoaded] = useState(false);
 
@@ -78,7 +77,11 @@ export default function Posts() {
         });
       }
     }
-  }, [usersLoaded, posts, users, postsDispatch]);
+  }, [usersLoaded, posts, users, postsDispatch,]);
+
+  const getRandomNumber = () => {
+    return Math.floor(Math.random() * 100) + 1; // Genera un número aleatorio entre 1 y 100
+  };
 
   return (
     <div className="home__posts">
@@ -113,7 +116,7 @@ export default function Posts() {
                 </div>
                 <div>
                   <FiSend />
-                  <p>nmero random</p>
+                  <p>{getRandomNumber()}</p>
                 </div>
                 <div>
 

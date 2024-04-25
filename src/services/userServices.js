@@ -20,19 +20,6 @@ export const getAllPosts = async() =>{
         return []
     }
 }
-
-export const getCommentsByPostId = async (postId) => {
-    try {
-      const { data } = await axios.get(
-        `${endpoints.getAllPosts}/${postId}/comentarios`
-      );
-      return data;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  };
-
   
 export const getUser = async(idUser) =>{
     try {
@@ -43,6 +30,17 @@ export const getUser = async(idUser) =>{
         return null
     }
 }
+
+export const getCommentsCountForPost = async (postId) => {
+    try {
+        const { data } = await axios.get(endpoints.getCommentsByPostId(postId));
+        return data.length;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
 
 
 

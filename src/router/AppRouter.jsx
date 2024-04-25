@@ -8,15 +8,17 @@ export const AppContext = createContext(null);
 
 const AppRouter = () => {
     const [user, setUser] = useState({})
-    return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Login setUser={setUser}/>} />
-                <Route path="register" element = {<Register />} />
-                <Route path="home" element ={<Home />} />
-            </Routes>
+    return (
+        <AppContext.Provider value={{ user, setUser }}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="home" element={<Home/>} />
+                </Routes>
 
-        </BrowserRouter>
+            </BrowserRouter>
+        </AppContext.Provider>
     )
 }
 
