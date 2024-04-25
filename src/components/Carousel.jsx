@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../pages/home/home.scss";
 import { getAllUsers } from "../services/userServices";
 import { FaPlus } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 export default function Carousel() {
 
@@ -41,7 +42,10 @@ export default function Carousel() {
       <div className="home__story">
         <div className="home__story-figure">
           <div className="home__story-container">
+            
             <img src={userProfile} alt="user-profile" className="home__story-container-image" />
+            
+            
             <FaPlus className="plus" />
           </div>
           <p className="home__story-caption">Your story</p>
@@ -50,7 +54,9 @@ export default function Carousel() {
         {followingUsers.map((user, index) => (
           <div className="home__story-figure" key={index}>
             <div className="home__story-container">
+            <NavLink to={`/perfil/:${user.id}`}>
               <img src={user.urlPerfil} alt={`user-${index}`} className="home__story-container-image-friends" />
+            </NavLink>
             </div>
               <p className="home__story-caption">{user.nombre}</p>
           </div>

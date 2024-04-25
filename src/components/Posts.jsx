@@ -5,6 +5,7 @@ import { TbMessageCircle2 } from "react-icons/tb";
 import { FiSend } from "react-icons/fi";
 import { getAllPosts, getAllUsers } from "../services/userServices";
 import { useAppContext } from "../context/AppContext";
+import { NavLink } from "react-router-dom";
 
 // const ActionTypes = {
 //   SET_POSTS: "SET_POSTS",
@@ -87,11 +88,14 @@ export default function Posts() {
             <div key={post.id}>
               <div className="home__posts-header">
                 <div className="home__posts-header-user">
-                  <img
+                <NavLink to={`/perfil/:${post.id}`}>
+                <img
                     src={post.userPhoto}
                     alt={post.userName}
                     className="home__posts-header-user-img"
                   />
+                </NavLink>
+                  
                 </div>
                 <b>{post.userName}</b>
               </div>
@@ -112,6 +116,7 @@ export default function Posts() {
                 <FaRegBookmark />
               </div>
               <div className="home__posts-footer">
+              
                 <p>
                   <b>{post.userName}</b> {post.descripcion}
                 </p>

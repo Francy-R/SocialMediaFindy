@@ -1,82 +1,92 @@
 @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-main{
+
+main {
     max-width: 100%;
     background-image: radial-gradient(circle at -20.71% 50%, #dbb9e0 0, #e0b8db 6.25%, #e5b7d6 12.5%, #e9b6d1 18.75%, #ecb5cb 25%, #efb5c6 31.25%, #f1b4c0 37.5%, #f2b5ba 43.75%, #f2b5b5 50%, #f1b6b0 56.25%, #f0b7ab 62.5%, #eeb8a6 68.75%, #ebb9a2 75%, #e8bb9f 81.25%, #e4bd9c 87.5%, #e0bf9a 93.75%, #dbc099 100%);
 }
-.Portada{
+
+.Portada {
     height: 227px;
     width: 100%;
-    img{
+
+    img {
         width: 100%;
         height: 227px;
-        object-fit:cover;
-        
+        object-fit: cover;
+
     }
 }
-.headerInfo{
-    display:flex;
+
+.headerInfo {
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
     text-align: center;
-    margin:0.8em 0;
+    margin: 0.8em 0;
     background-image: radial-gradient(circle at -20.71% 50%, #dbb9e0 0, #e0b8db 6.25%, #e5b7d6 12.5%, #e9b6d1 18.75%, #ecb5cb 25%, #efb5c6 31.25%, #f1b4c0 37.5%, #f2b5ba 43.75%, #f2b5b5 50%, #f1b6b0 56.25%, #f0b7ab 62.5%, #eeb8a6 68.75%, #ebb9a2 75%, #e8bb9f 81.25%, #e4bd9c 87.5%, #e0bf9a 93.75%, #dbc099 100%);
     font-family: "Balsamiq Sans", sans-serif;
-    .imagePerfil{
+
+    .imagePerfil {
         width: 72px;
         height: 72px;
-        border-radius:1.5px;
+        border-radius: 1.5px;
         object-fit: fit cover;
         border-radius: 50%;
-        
-        border: 3px solid transparent; 
-        margin-top:-2em;
+
+        border: 3px solid transparent;
+        margin-top: -2em;
         margin-right: 31px;
 
     }
-    .subText{
-        
-        color:#000000;
+
+    .subText {
+
+        color: #000000;
         font-weight: 400;
         font-size: 12px;
         line-height: 14.4px;
     }
-    .textNum{
+
+    .textNum {
         font-weight: 700;
         font-size: 16px;
         line-height: 19.2px;
     }
-    
-};
 
-.infoPersona{
+}
+
+;
+
+.infoPersona {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     font-family: "Balsamiq Sans", sans-serif;
-    color:#2F2F2F;
+    color: #2F2F2F;
     font-weight: 400;
     line-height: 14.4px;
     font-size: 12px;
 
-    .textName{
+    .textName {
         font-weight: 700;
         font-size: 16px;
         line-height: 19.2px;
     }
 
-    .estiloBotones{
+    .estiloBotones {
         display: flex;
         flex-direction: row;
         width: 100%;
         justify-content: space-around;
-       
-        .botonDinamico{
+
+        .botonDinamico {
             background: linear-gradient(92.69deg, #EB5E5C -0.64%, #FF7674 101.09%);
             width: 7em;
             height: 2em;
@@ -85,27 +95,60 @@ main{
             font-size: 20px;
             font-weight: 700;
             line-height: 24px;
-            color:white;
-            
+            color: white;
+
 
         }
 
-        .botonDinamico:hover{
+        .botonDinamico:hover {
             cursor: pointer;
         }
-        
+
     }
 
-    
 
 
-};
-.detallesPublicaciones{
+
+}
+
+;
+
+.detallesPublicaciones {
     height: 100vh;
     width: 100%;
     border-radius: 30px;
     /* color: blue; */
     background-color: white;
     margin-top: 0.9em;
+    font-family: "Balsamiq Sans", sans-serif;
 
+}
+
+.headerDetalles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 2em;
+
+    p {
+        margin-top: 1em;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19.2px;
+        color:#2F2F2F;
+
+    }
+
+    p:hover{
+        cursor:pointer;
+        border-bottom: 2px rgb(245, 142, 159) solid;
+    }
+}
+
+.seccionFotos{
+    margin: 8px 29px;
+    img{
+        width: 40vw;
+        border-radius: 15%;
+    }
 }
