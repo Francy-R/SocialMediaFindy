@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Register from "../pages/login/Register";
@@ -10,16 +10,19 @@ export const AppContext = createContext(null);
 
 const AppRouter = () => {
     const [user, setUser] = useState({})
-
     return (
-        <BrowserRouter>
-            <Routes>
-                    <Route path="/" element={<Login setUser={setUser} />} />
+        <AppContext.Provider value={{ user, setUser }}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login />} />
                     <Route path="register" element={<Register />} />
-                    <Route path="home" element={<Home />} />
+                    <Route path="home" element={<Home/>} />
                     <Route path="perfil/:id" element={<Friend />} />
-            </Routes>
-        </BrowserRouter>
+                </Routes>
+
+            </BrowserRouter>
+        </AppContext.Provider>
+
     )
 }
 

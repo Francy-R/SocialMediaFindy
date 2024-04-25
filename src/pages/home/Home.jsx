@@ -7,8 +7,8 @@ import Posts from "../../components/Posts";
 
 export default function Home() {
 
-
   return (
+    
     <div>
       <div className="home__header">
         <img src={findyLogo} alt="logo" className="home__header-logo"/>
@@ -17,7 +17,6 @@ export default function Home() {
           <PiChatsCircleBold className="home__header-icons-icon" />
         </div>
       </div>
-
       <Carousel />
       <Posts />
     </div>

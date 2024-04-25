@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import "../login/login.scss"
 import useForm from "../../hooks/useForm";
 import { getUserByEmailAndPassword } from "../../services/userServices";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { AppContext } from "../../router/AppRouter";
+
 
 const StyledForm = styled.form`
     display: flex;
@@ -25,21 +29,23 @@ const StyledLogin = styled.div`
     password: ''
 }
 
-const Login = ({setUser}) => {
+const Login = () => {
     const navigate = useNavigate()
     const [form, handleChange, reset] = useForm(INITIALVALUE)
+    const { setUser } = useContext(AppContext);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(form);
+        //console.log(form);
         const user = await getUserByEmailAndPassword(form);
+        console.log("este es el user de login" +getUserByEmailAndPassword(form.userName));
         reset();
         if (user) {
             setUser(user)
             alert(`Bienvenid@ ${form.userName}`)
             navigate('/home') // recodar enlazar con home
         } else {
-            alert(`Verifique sus credenciales`)
+            alert("Verifique sus credenciales")
         }
 
     }
