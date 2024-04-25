@@ -42,17 +42,6 @@ export const getCommentsCountForPost = async (postId) => {
 }
 
 
-export const getCommentsCountForPost = async (postId) => {
-    try {
-        const { data } = await axios.get(endpoints.getCommentsByPostId(postId));
-        return data.length;
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-}
-
-
 
 
 export const getUserByEmailAndPassword = async ({ userName, password }) => {
