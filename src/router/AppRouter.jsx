@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Register from "../pages/login/Register";
 import Home from "../pages/home/Home";
+import Layout from "../layout/Layout";
+
 
 export const AppContext = createContext(null);
 
@@ -19,7 +21,8 @@ const AppRouter = () => {
 
             </BrowserRouter>
         </AppContext.Provider>
+            </BrowserRouter>
+        </AppContext.Provider>
     )
 }
-
 export default AppRouter;
