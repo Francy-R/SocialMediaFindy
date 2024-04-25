@@ -33,7 +33,7 @@ export default function Posts() {
     posts: { posts, postsDispatch },
     users: { users, usersDispatch },
   } = useAppContext();
-  
+
   // const [state, dispatch] = useReducer(reducer, initialState);
   const [usersLoaded, setUsersLoaded] = useState(false);
   const [commentsLoaded, setCommentsLoaded] = useState(false)
@@ -65,7 +65,7 @@ export default function Posts() {
       };
       updatePostsWithCommentsCount();
     }
-  }, [usersLoaded, posts, users, postsDispatch, commentsLoaded]); 
+  }, [usersLoaded, posts, users, postsDispatch, commentsLoaded]);
 
   useEffect(() => {
     // Verificamos si los usuarios se han cargado y las publicaciones han cambiado
@@ -106,17 +106,19 @@ export default function Posts() {
       {posts.posts.length
         ? posts.posts.map((post) => (
 
-            <div key={post.id}>
-              <div className="home__posts-header">
-                <div className="home__posts-header-user">
+          <div key={post.id}>
+            <div className="home__posts-header">
+              <div className="home__posts-header-user">
                 <NavLink to={`/perfil/:${post.id}`}>
-                <img
+                  <img
                     src={post.userPhoto}
                     alt={post.userName}
                     className="home__posts-header-user-img"
                   />
                 </NavLink>
-                  
+              </div>
+            </div>
+
             <div key={post.id} className="home__post">
               <div className="home__post-content">
                 <div className="home__post-content-header">
@@ -129,7 +131,7 @@ export default function Posts() {
                   </div>
                   <b>{post.userName}</b>
                 </div>
-  
+
                 {/* Renderizado condicional del contenido basado en la categoría */}
                 {post.categoria === "Imagen" && (
                   <img
@@ -159,7 +161,7 @@ export default function Posts() {
                     allowFullScreen
                   ></iframe>
                 )}
-  
+
                 <div className="home__post-content-icons">
                   <div>
                     <FaRegHeart />
@@ -178,7 +180,7 @@ export default function Posts() {
                   </div>
 
                 </div>
-  
+
                 <div className="home__post-content-footer">
                   <p>
                     <b>{post.userName}</b> {post.descripcion}
@@ -192,7 +194,7 @@ export default function Posts() {
                 <FaRegBookmark />
               </div>
               <div className="home__posts-footer">
-              
+
                 <p>
                   <b>{post.userName}</b> {post.descripcion}
                 </p>
@@ -200,9 +202,10 @@ export default function Posts() {
 
               </div>
             </div>
-          ))
+
+          </div>))
         : null}
     </div>
   );
-  
+
 }
