@@ -5,7 +5,7 @@ import { getUserByEmailAndPassword } from "../../services/userServices";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../../router/AppRouter";
-
+import '../login/login.scss';
 
 const StyledForm = styled.form`
     display: flex;
@@ -24,7 +24,7 @@ const StyledLogin = styled.div`
     justify-content:center;
     height: 80vh;
  `
- const INITIALVALUE = {
+const INITIALVALUE = {
     userName: '',
     password: ''
 }
@@ -38,7 +38,7 @@ const Login = () => {
         event.preventDefault();
         //console.log(form);
         const user = await getUserByEmailAndPassword(form);
-        console.log("este es el user de login" +getUserByEmailAndPassword(form.userName));
+        console.log("este es el user de login" + getUserByEmailAndPassword(form.userName));
         reset();
         if (user) {
             setUser(user)
@@ -52,37 +52,45 @@ const Login = () => {
 
     return (
         <>
-            <StyledLogin>
-                <h1>Inicio de sesión</h1>
-                <StyledForm onSubmit={handleSubmit}>
-                    <div>
-                        <label>Nombre de usuario</label>
-                        <input
-                            type="text"
-                            name="userName"
-                            id="userName"
-                            placeholder="Usuario"
-                            value={form.userName}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div>
-                        <label>Contraseña</label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="Contraseña"
-                            value={form.password}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <button type="submit">Enviar</button>
-                </StyledForm>
-                <p>¿Aún no tienes una cuenta? {" "}
-                    <Link to={"/register"}>Regístrate ahora </Link>
-                </p>
-            </StyledLogin>
+            <main className="loginContenido">
+                <StyledLogin>
+                    <img src="/src/assets/LOGO arriba.png" className="imageLogo" />
+                    <img src="/src/assets/LOGO abajo.png" className="imageLogo" />
+                    <h1>Inicio de sesión</h1>
+                    <StyledForm onSubmit={handleSubmit}>
+                        <div className="cajitalogin">
+                            <div >
+                                <label>Nombre de usuario</label>
+                                <input
+                                    type="text"
+                                    name="userName"
+                                    id="userName"
+                                    placeholder="Usuario"
+                                    value={form.userName}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label>Contraseña</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    placeholder="Contraseña"
+                                    value={form.password}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <button className="botonEnviar" type="submit">Enviar</button>
+                        </div>
+
+                    </StyledForm>
+                    <p>¿Aún no tienes una cuenta? {" "}
+                        <Link to={"/register"}>Regístrate ahora </Link>
+                    </p>
+                </StyledLogin>
+
+            </main>
         </>
     )
 };

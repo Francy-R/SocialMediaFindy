@@ -4,6 +4,7 @@ import { FaRegHeart } from "react-icons/fa";
 import findyLogo from "../../assets/findyLogo.png"
 import Carousel from "../../components/Carousel";
 import Posts from "../../components/Posts";
+import Layout from "../../layout/Layout";
 
 export default function Home() {
 
@@ -19,6 +20,7 @@ export default function Home() {
       </div>
       <Carousel />
       <Posts />
+      <Layout />
     </div>
   );
 }

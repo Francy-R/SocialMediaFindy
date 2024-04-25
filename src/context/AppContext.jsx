@@ -25,6 +25,7 @@ export const AppContextProvider = ({ children }) => {
 
   const initialUsers = {
     users: [],
+    follow:false,
   };
 
   const initialComments = {
@@ -32,8 +33,9 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const [auth, authDispatch] = useReducer(authReducer, initialAuth);
-    const [posts, postsDispatch] = useReducer(postsReducer, initialPosts);
-    const [users, usersDispatch] = useReducer(usersReducer, initialUsers)
+  const [posts, postsDispatch] = useReducer(postsReducer, initialPosts);
+  const [users, usersDispatch] = useReducer(usersReducer, initialUsers)
+
 
   const globalState = {
     auth: { auth, authDispatch },
