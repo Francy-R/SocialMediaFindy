@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Register from "../pages/login/Register";
 import Home from "../pages/home/Home";
+import { AppContextProvider } from "../context/AppContext"
+import Friend from "../pages/friend/Friend";
 import Layout from "../layout/Layout";
 
 
@@ -16,6 +18,8 @@ const AppRouter = () => {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="register" element={<Register />} />
+                    <Route path="home" element={<Home/>} />
+                    <Route path="perfil/:id" element={<Friend />} />
                     <Route path="layout" element={<Layout />}>
                         <Route path="home" element={<Home />} />
                     </Route>
@@ -23,6 +27,7 @@ const AppRouter = () => {
 
             </BrowserRouter>
         </AppContext.Provider>
+
     )
 }
 export default AppRouter;

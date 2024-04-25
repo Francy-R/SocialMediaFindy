@@ -5,7 +5,18 @@ const usersReducer = (state, action) => {
         ...state,
         users: action.payload,
       };
-      //Aquí van los demás casos
+    case 'SEGUIR_USUARIO':
+      return {
+        ...state,
+        follow: true
+      };
+    case 'DEJAR_DE_SEGUIR':
+      return {
+        ...state,
+        follow: false
+      };
+    
+
     default:
       return state;
   }
