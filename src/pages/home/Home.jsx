@@ -10,7 +10,6 @@ import { AppContext } from "../../router/AppRouter";
 export default function Home() {
 
   const { user } = useContext(AppContext);
-  console.log("este es el user home" + user?.name)
   return (
     
     <div>
@@ -18,7 +17,7 @@ export default function Home() {
 <div>
       {user ? (
         <div>
-          <h2>Bienvenido, {user.usuario}!</h2>
+          <h2>Bienvenido, {user.id}!</h2>
         </div>
       ) : (
         <h2>No estás logueado</h2>
