@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { createUser } from "../../services/userServices";
+import '../login/register.scss';
 
 const passwordRegex =
     /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])\S{3,16}$/;
@@ -43,7 +44,7 @@ const StyledLogin = styled.div`
 const Register = ({ }) => {
 
     const navigate = useNavigate()
-    
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -64,35 +65,35 @@ const Register = ({ }) => {
                 .required("* Este campo es obligatorio"),
             status: Yup.string()
                 .max(50, "* No debes exceder los 50 caracteres"),
-           /* urlPerfil: Yup.string()
-                .required('* Debes subir una imagen'),
-            // .url('* Debes proporcionar una URL válida'),
-            /*  .test('fileType', 'El archivo debe ser JPG, JPEG, o PNG', (value) => {
-                  return value && SUPPORTED_IMAGE_TYPES.includes(value.type);
-              }),*/
+            /* urlPerfil: Yup.string()
+                 .required('* Debes subir una imagen'),
+             // .url('* Debes proporcionar una URL válida'),
+             /*  .test('fileType', 'El archivo debe ser JPG, JPEG, o PNG', (value) => {
+                   return value && SUPPORTED_IMAGE_TYPES.includes(value.type);
+               }),*/
             /*urlBarnner: Yup.string()
             //.required('* Debes subir una imagen')
             // .url('* Debes proporcionar una URL válida'),*/
             password: Yup.string()
-                  .required("* Debe digitar una contraseña")
-                  .matches(
-                      passwordRegex,
-                      "* La contraseña al menos debe tener un dígito, una minúscula, una mayúscula, debe contener más de 3 caracteres pero no exceder los 16 caracteres."
-                  )
-                  .oneOf(
-                      [Yup.ref("confpassword")],
-                      "* La contraseña ingresada no coincide"
-                  ),
-              confpassword: Yup.string()
-                  .required("* Debe digitar una contraseña")
-                  .matches(
-                      passwordRegex,
-                      "* La contraseña al menos debe tener un dígito, una minúscula, una mayúscula y debe contener más de 3 caracteres pero no exceder los 16 caracteres."
-                  ) 
-              /*.oneOf(
-                  [Yup.ref("password")],
-                  "* La contraseña ingresada no coincide"
-              ),*/
+                .required("* Debe digitar una contraseña")
+                .matches(
+                    passwordRegex,
+                    "* La contraseña al menos debe tener un dígito, una minúscula, una mayúscula, debe contener más de 3 caracteres pero no exceder los 16 caracteres."
+                )
+                .oneOf(
+                    [Yup.ref("confpassword")],
+                    "* La contraseña ingresada no coincide"
+                ),
+            confpassword: Yup.string()
+                .required("* Debe digitar una contraseña")
+                .matches(
+                    passwordRegex,
+                    "* La contraseña al menos debe tener un dígito, una minúscula, una mayúscula y debe contener más de 3 caracteres pero no exceder los 16 caracteres."
+                )
+            /*.oneOf(
+                [Yup.ref("password")],
+                "* La contraseña ingresada no coincide"
+            ),*/
         }),
 
 
@@ -102,16 +103,16 @@ const Register = ({ }) => {
             const user = {
                 nombre: values.name,
                 usuario: values.nameUser,
-                contraseña:values.password,
+                contraseña: values.password,
                 estado: values.status,
                 urlPerfil: values.urlPerfil,
                 urlBarnner: values.urlBarnner,
                 seguidores: [],
-                seguidos:[],
-                totalLikes:0,
-                etiquetas:[]
+                seguidos: [],
+                totalLikes: 0,
+                etiquetas: []
 
-                
+
 
             }
             const response = await createUser(user);
@@ -128,112 +129,116 @@ const Register = ({ }) => {
 
     return (
         <>
-            <StyledLogin>
-                <h1>Registro a Findy</h1>
-                <StyledForm onSubmit={formik.handleSubmit}>
-                    <div>
-                        <label htmlFor="">Nombre completo</label>
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            placeholder="Lola Perez"
-                            onChange={formik.handleChange}
-                            value={formik.values.name}
-                            className={formik.touched.name && formik.errors.name ? "error" : ""}
-                        />
-                        {formik.touched.name && formik.errors.name ? (
-                            <div className="errorsms">{formik.errors.name}</div>
-                        ) : null}
+            <main className="loginContenido">
+                <StyledLogin>
+                <img src="/src/assets/LOGO arriba.png" className="imageLogo" />
+                    <img src="/src/assets/LOGO abajo.png" className="imageLogo" />
+                    <h1>Registro a Findy</h1>
+                    <StyledForm onSubmit={formik.handleSubmit}>
+                        <div>
+                            <label htmlFor="">Nombre completo</label>
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                placeholder="Lola Perez"
+                                onChange={formik.handleChange}
+                                value={formik.values.name}
+                                className={formik.touched.name && formik.errors.name ? "error" : ""}
+                            />
+                            {formik.touched.name && formik.errors.name ? (
+                                <div className="errorsms">{formik.errors.name}</div>
+                            ) : null}
 
-                        <label htmlFor="">Nombre de usuario</label>
-                        <input
-                            type="text"
-                            name="nameUser"
-                            id="nameUser"
-                            placeholder="Lola"
-                            onChange={formik.handleChange}
-                            value={formik.values.nameUser}
-                        />
-                        {formik.touched.nameUser && formik.errors.nameUser ? (
-                            <div className="errorsms">{formik.errors.nameUser}</div>
+                            <label htmlFor="">Nombre de usuario</label>
+                            <input
+                                type="text"
+                                name="nameUser"
+                                id="nameUser"
+                                placeholder="Lola"
+                                onChange={formik.handleChange}
+                                value={formik.values.nameUser}
+                            />
+                            {formik.touched.nameUser && formik.errors.nameUser ? (
+                                <div className="errorsms">{formik.errors.nameUser}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <label htmlFor="">Tu estado</label>
+                            <input
+                                type="text"
+                                name="status"
+                                id="status"
+                                placeholder="Taste that pink venom"
+                                onChange={formik.handleChange}
+                                value={formik.values.status}
+                            />
+                            {formik.touched.status && formik.errors.status ? (
+                                <div className="errorsms">{formik.errors.status}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <label htmlFor="">Foto de perfil</label>
+                            <input
+                                type="url"
+                                name="urlPerfil"
+                                id="urlPerfil"
+                                placeholder="https://ilarge.lisimg.com/image/22555717/740full-jennie-kim.jpg"
+                                onChange={formik.handleChange}
+                                value={formik.values.urlPerfil}
+                            />
+                            {formik.touched.urlPerfil && formik.errors.urlPerfil ? (
+                                <div className="errorsms">{formik.errors.urlPerfil}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <label htmlFor="">Foto de portada</label>
+                            <input
+                                type="url"
+                                name="urlBarnner"
+                                id="urlBarnner"
+                                placeholder="https://ilarge.lisimg.com/image/22555717/740full-jennie-kim.jpg"
+                                onChange={formik.handleChange}
+                                value={formik.values.urlBarnner}
+                            />
+                        </div>
+                        {formik.touched.urlBarnner && formik.errors.urlBarnner ? (
+                            <div className="errorsms">{formik.errors.urlBarnner}</div>
                         ) : null}
-                    </div>
-                    <div>
-                        <label htmlFor="">Tu estado</label>
-                        <input
-                            type="text"
-                            name="status"
-                            id="status"
-                            placeholder="Taste that pink venom"
-                            onChange={formik.handleChange}
-                            value={formik.values.status}
-                        />
-                        {formik.touched.status && formik.errors.status ? (
-                            <div className="errorsms">{formik.errors.status}</div>
-                        ) : null}
-                    </div>
-                    <div>
-                        <label htmlFor="">Foto de perfil</label>
-                        <input
-                            type="url"
-                            name="urlPerfil"
-                            id="urlPerfil"
-                            placeholder="https://ilarge.lisimg.com/image/22555717/740full-jennie-kim.jpg"
-                            onChange={formik.handleChange}
-                            value={formik.values.urlPerfil}
-                        />
-                        {formik.touched.urlPerfil && formik.errors.urlPerfil ? (
-                            <div className="errorsms">{formik.errors.urlPerfil}</div>
-                        ) : null}
-                    </div>
-                    <div>
-                        <label htmlFor="">Foto de portada</label>
-                        <input
-                            type="url"
-                            name="urlBarnner"
-                            id="urlBarnner"
-                            placeholder="https://ilarge.lisimg.com/image/22555717/740full-jennie-kim.jpg"
-                            onChange={formik.handleChange}
-                            value={formik.values.urlBarnner}
-                        />
-                    </div>
-                    {formik.touched.urlBarnner && formik.errors.urlBarnner ? (
-                        <div className="errorsms">{formik.errors.urlBarnner}</div>
-                    ) : null}
-                    <div>
-                        <label htmlFor="">Contraseña</label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="Contaseña"
-                            onChange={formik.handleChange}
-                            value={formik.values.password}
-                        />
-                        {formik.touched.password && formik.errors.password ? (
-                            <div className="errorsms">{formik.errors.password}</div>
-                        ) : null}
-                    </div>
-                    <div>
-                        <label htmlFor="">Confirmar contraseña</label>
-                        <input
-                            type="password"
-                            name="confpassword"
-                            id="confpassword"
-                            placeholder="Contaseña"
-                            onChange={formik.handleChange}
-                            value={formik.values.confpassword}
-                        />
-                        {formik.touched.confpassword && formik.errors.confpassword ? (
-                            <div className="errorsms">{formik.errors.confpassword}</div>
-                        ) : null}
-                    </div>
-                    <button type="submit">Registrar</button>
+                        <div>
+                            <label htmlFor="">Contraseña</label>
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="Contaseña"
+                                onChange={formik.handleChange}
+                                value={formik.values.password}
+                            />
+                            {formik.touched.password && formik.errors.password ? (
+                                <div className="errorsms">{formik.errors.password}</div>
+                            ) : null}
+                        </div>
+                        <div>
+                            <label htmlFor="">Confirmar contraseña</label>
+                            <input
+                                type="password"
+                                name="confpassword"
+                                id="confpassword"
+                                placeholder="Contaseña"
+                                onChange={formik.handleChange}
+                                value={formik.values.confpassword}
+                            />
+                            {formik.touched.confpassword && formik.errors.confpassword ? (
+                                <div className="errorsms">{formik.errors.confpassword}</div>
+                            ) : null}
+                        </div>
+                        <button className="botonEnviar" type="submit">Registrar</button>
 
-                </StyledForm>
-                <p>si ya tiene una cuenta registrada inicie sesión <Link to={"/"}>aquí!</Link></p>
-            </StyledLogin>
+                    </StyledForm>
+                    <p>Si ya tiene una cuenta registrada inicie sesión <Link to={"/"}>aquí!</Link></p>
+                </StyledLogin>
+            </main>
 
 
 
