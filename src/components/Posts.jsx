@@ -3,7 +3,7 @@ import { FaRegBookmark, FaRegHeart } from "react-icons/fa";
 import "../pages/home/home.scss";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { FiSend } from "react-icons/fi";
-import { getAllPosts, getAllUsers } from "../services/userServices";
+import { getAllPosts, getAllUsers, getCommentsCountForPost } from "../services/userServices";
 import { useAppContext } from "../context/AppContext";
 
 // const ActionTypes = {
@@ -35,6 +35,7 @@ export default function Posts() {
   
   // const [state, dispatch] = useReducer(reducer, initialState);
   const [usersLoaded, setUsersLoaded] = useState(false);
+  const [commentsLoaded, setCommentsLoaded] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -48,6 +49,22 @@ export default function Posts() {
     }
     fetchData();
   }, [postsDispatch, usersDispatch]);
+
+  useEffect(() => {
+    if (usersLoaded && posts.posts.length > 0 && users.users.length > 0 && !commentsLoaded) {
+      const updatePostsWithCommentsCount = async () => {
+        const updatedPosts = await Promise.all(
+          posts.posts.map(async (post) => {
+            const commentsCount = await getCommentsCountForPost(post.id);
+            return { ...post, commentsCount };
+          })
+        );
+        postsDispatch({ type: "FillPosts", payload: updatedPosts });
+        setCommentsLoaded(true); // Marcamos los comentarios como cargados
+      };
+      updatePostsWithCommentsCount();
+    }
+  }, [usersLoaded, posts, users, postsDispatch, commentsLoaded]); 
 
   useEffect(() => {
     // Verificamos si los usuarios se han cargado y las publicaciones han cambiado
@@ -112,7 +129,7 @@ export default function Posts() {
                 </div>
                 <div>
                   <TbMessageCircle2 />
-                  <p>cantidad de comentarios</p>
+                  <p>{post.commentsCount}</p>
                 </div>
                 <div>
                   <FiSend />
