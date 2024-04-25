@@ -126,11 +126,11 @@ export default function Posts() {
                   />
                 )}
                 {post.categoria === "Album" && (
-                  <div className="album-container">
+                  <div className="home__post-content-album">
                     {post.recursos.map((resource, index) => (
                       <img
                         key={index}
-                        className="album-image"
+                        className="home__post-content-album-img"
                         src={resource}
                         alt={`Imagen ${index + 1}`}
                       />
@@ -142,8 +142,8 @@ export default function Posts() {
                     className="home__post-content-video"
                     title="video"
                     src={post.recursos[0]}
-                    frameborder="0"
-                    allowfullscreen
+                    frameBorder="0"
+                    allowFullScreen
                   ></iframe>
                 )}
   
