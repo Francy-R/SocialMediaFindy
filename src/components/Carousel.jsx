@@ -45,34 +45,34 @@ export default function Carousel() {
     <div className="home__stories">
       <div className="home__story">
         <div className="home__story-figure">
-          <div className="home__story-container">
-            <NavLink to={`/perfil/:${user.id}`}>
+          <NavLink to={`/perfil/:${user.id}`}>
+            <div className="home__story-container">
               <img
                 src={userProfile}
                 alt="user-profile"
                 className="home__story-container-image"
               />
               <FaPlus className="plus" />
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
           <p className="home__story-caption">Your story</p>
         </div>
 
         {followingUsers.map((user, index) => (
           <div className="home__story-figure" key={index}>
-            <div className="home__story-container">
-              <NavLink to={`/perfil/:${user.id}`}>
+            <NavLink to={`/perfil/:${user.id}`}>
+              <div className="home__story-container">
                 <img
                   src={user.urlPerfil}
                   alt={`user-${index}`}
                   className="home__story-container-image-friends"
                 />
-              </NavLink>
-            </div>
+              </div>
+            </NavLink>
             <p className="home__story-caption">{user.nombre}</p>
           </div>
         ))}
       </div>
     </div>
-  );
+  )
 }
