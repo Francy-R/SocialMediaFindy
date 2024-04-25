@@ -3,21 +3,25 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Register from "../pages/login/Register";
 import Home from "../pages/home/Home";
+import Layout from "../layout/Layout";
+
 
 export const AppContext = createContext(null);
 
 const AppRouter = () => {
     const [user, setUser] = useState({})
-    return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Login setUser={setUser}/>} />
-                <Route path="register" element = {<Register />} />
-                <Route path="home" element ={<Home />} />
-            </Routes>
+    return (
+        <AppContext.Provider value={{ user, setUser }}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="layout" element={<Layout/>} />
+                    {/* <Route path="/" element={<Login />} />
+                    <Route path="register" element={<Register />} /> */}
+                    <Route path="home" element={<Home/>} />
+                </Routes>
 
-        </BrowserRouter>
+            </BrowserRouter>
+        </AppContext.Provider>
     )
 }
-
 export default AppRouter;
