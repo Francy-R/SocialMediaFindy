@@ -84,40 +84,53 @@ export default function Posts() {
     <div className="home__posts">
       {posts.posts.length
         ? posts.posts.map((post) => (
-            <div key={post.id}>
-              <div className="home__posts-header">
-                <div className="home__posts-header-user">
+          <div key={post.id} className="home__post">
+
+            <div className="home__post-content">
+
+              <div className="home__post-content-header">
+                <div className="home__post-content-header-user">
                   <img
                     src={post.userPhoto}
                     alt={post.userName}
-                    className="home__posts-header-user-img"
+                    className="home__post-content-header-user-img"
                   />
                 </div>
                 <b>{post.userName}</b>
               </div>
-              <img src={post.recursos[0]} alt="post" />
-              <div className="home__posts-icons">
+
+              <img className="home__post-content-img" src={post.recursos[0]} alt="post" />
+
+
+              <div className="home__post-content-icons">
                 <div>
                   <FaRegHeart />
-                  <p>2</p>
+                  <p>{post.likes.length}</p>
                 </div>
                 <div>
                   <TbMessageCircle2 />
-                  <p>2</p>
+                  <p>cantidad de comentarios</p>
                 </div>
                 <div>
                   <FiSend />
-                  <p></p>
+                  <p>nmero random</p>
                 </div>
+                <div>
+
                 <FaRegBookmark />
+                </div>
               </div>
-              <div className="home__posts-footer">
+
+              <div className="home__post-content-footer">
                 <p>
                   <b>{post.userName}</b> {post.descripcion}
                 </p>
               </div>
+
             </div>
-          ))
+
+          </div>
+        ))
         : null}
     </div>
   );

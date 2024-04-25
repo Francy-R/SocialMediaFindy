@@ -21,6 +21,19 @@ export const getAllPosts = async() =>{
     }
 }
 
+export const getCommentsByPostId = async (postId) => {
+    try {
+      const { data } = await axios.get(
+        `${endpoints.getAllPosts}/${postId}/comentarios`
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
+
+  
 export const getUser = async(idUser) =>{
     try {
         const {data} = await axios.get(endpoints.getUser(idUser));
