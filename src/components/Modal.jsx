@@ -4,54 +4,38 @@ import { AppContext } from '../router/AppRouter';
 
 const Modal = ({ isOpen }) => {
     if (!isOpen) return null;
-    const { user } = useContext(AppContext);
-    const [data, setData] = useState([]);
-    const [selectedOption, setSelectedOption] = useState('');
-    const [users, setUsers] = useState([]);
-    const [followingUsers, setFollowingUsers] = useState([]);
-
+    const { user, allUsers, setAllUsers } = useContext(AppContext);
     useEffect(() => {
-      async function fetchData() {
-        try {
-          // Obtener la lista de todos los usuarios
-          const allUsers = await getAllUsers();
-          setUsers(allUsers);
-  
-          // Filtrar la información de los usuarios que sigue el usuario actual
-          const currentUser = allUsers.find(user => user.id === user.id);
-          if (currentUser) {
-  
-            const followingIds = currentUser.seguidos || [];
-            const following = allUsers.filter((user) => followingIds.includes(user.id));
-            setFollowingUsers(following);
-            console.log("seguidos",following)
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-
-      fetchData();
-    }, []);
-
+      // Obtener todos los usuarios y guardarlos en el estado
+      getAllUsers()
+          .then(users => setAllUsers(users))
+          .catch(error => console.error('Error fetching users:', error));
+  }, []);
+    
+    const getUserNameById = (userId) => {
+      const foundUser = allUsers.find(user => user.id === userId);
+      return foundUser ? foundUser.nombre : "Usuario no encontrado";
+  };
+    console.log("datos", user.seguidos)
 
     return (
         <div className="modal-overlay">
             <div className="modal">
                 <h2>Nueva publicación</h2>
                 <form action="submit" className="modal-form">
-                    <label htmlFor="imagen">Ingresa url de imagen</label>
+                    <label >Ingresa url de imagen</label>
                     <input
                         type="text"
+                        name="recursos"
                     />
-                    <label htmlFor="descripcion">Descripcion de la publicación</label>
-                    <input type="text" placeholder="Escribe texto o una descripción..." />
-                    <label htmlFor="etiqueta">Etiqueta a un amigo</label>
-                    <select name="etiquetar" id="" placeholder ="Selecciona">
+                    <label >Descripcion de la publicación</label>
+                    <input type="text" name ="descripcion" placeholder="Escribe texto o una descripción..." />
+                    <label >Etiqueta a un amigo</label>
+                    <select name="etiquetados" id="" placeholder ="Selecciona">
                         <option value=""></option>
                         {/* Mapear los usuarios seguidos para obtener sus nombres */}
-                        {followingUsers.map(user => (
-                            <option key={user.id} value={user.id}>{user.nombre}</option>
+                        {user.seguidos.map(userId => (
+                            <option key={userId} value={userId}>{getUserNameById(userId)}</option>
                         ))}
                     </select>
                 </form>

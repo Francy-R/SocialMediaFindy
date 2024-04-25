@@ -14,7 +14,6 @@ export default function Layout() {
       };
     return (
         <div>
-            <Home/>
             <div className="addPublic">
                 <button className="addPublic__button" onClick={toggleModal} >
                     <figure ><img src={circle} alt="circle" className="addPublic__img" /></figure>
