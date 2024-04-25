@@ -66,7 +66,6 @@ export const createPost = async (newPost) => {
       return null
     }
   }
-}
 
 export const createUser = async (newUser) => {
     try {

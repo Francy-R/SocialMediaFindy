@@ -21,8 +21,6 @@ const AppRouter = () => {
 
             </BrowserRouter>
         </AppContext.Provider>
-            </BrowserRouter>
-        </AppContext.Provider>
     )
 }
 export default AppRouter;
