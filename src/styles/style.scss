@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap");
+
+* {
+    font-family: "Baloo 2", sans-serif;
+}
+
+body {
+    background: rgb(248, 248, 248);
+    background: radial-gradient(
+        circle,
+        rgba(248, 248, 248, 0.9220063025210083) 0%,
+        rgba(255, 118, 116, 0.12368697478991597) 100%
+    );
+}
