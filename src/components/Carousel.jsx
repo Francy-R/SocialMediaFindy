@@ -7,10 +7,8 @@ import { NavLink } from "react-router-dom";
 
 import { AppContext } from "../router/AppRouter";
 
-
 export default function Carousel() {
-
-  const {user} = useContext(AppContext);
+  const { user } = useContext(AppContext);
   const IdUser = user.id; // ID del usuario actual
 
   const [users, setUsers] = useState([]);
@@ -26,18 +24,19 @@ export default function Carousel() {
         setUsers(allUsers);
 
         // Filtrar la información de los usuarios que sigue el usuario actual
-        const currentUser = allUsers.find(user => user.id === IdUser);
+        const currentUser = allUsers.find((user) => user.id === IdUser);
         if (currentUser) {
           setUserName(currentUser.nombre);
           setUserProfile(currentUser.urlPerfil);
           const followingIds = currentUser.seguidos || [];
-          const following = allUsers.filter((user) => followingIds.includes(user.id));
+          const following = allUsers.filter((user) =>
+            followingIds.includes(user.id)
+          );
           setFollowingUsers(following);
         }
       } catch (error) {
         console.error(error);
       }
-      
     }
 
     fetchData();
@@ -47,11 +46,14 @@ export default function Carousel() {
       <div className="home__story">
         <div className="home__story-figure">
           <div className="home__story-container">
-            
-            <img src={userProfile} alt="user-profile" className="home__story-container-image" />
-            
-            
-            <FaPlus className="plus" />
+            <NavLink to={`/perfil/:${user.id}`}>
+              <img
+                src={userProfile}
+                alt="user-profile"
+                className="home__story-container-image"
+              />
+              <FaPlus className="plus" />
+            </NavLink>
           </div>
           <p className="home__story-caption">Your story</p>
         </div>
@@ -59,14 +61,18 @@ export default function Carousel() {
         {followingUsers.map((user, index) => (
           <div className="home__story-figure" key={index}>
             <div className="home__story-container">
-            <NavLink to={`/perfil/:${user.id}`}>
-              <img src={user.urlPerfil} alt={`user-${index}`} className="home__story-container-image-friends" />
-            </NavLink>
+              <NavLink to={`/perfil/:${user.id}`}>
+                <img
+                  src={user.urlPerfil}
+                  alt={`user-${index}`}
+                  className="home__story-container-image-friends"
+                />
+              </NavLink>
             </div>
-              <p className="home__story-caption">{user.nombre}</p>
+            <p className="home__story-caption">{user.nombre}</p>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 }
