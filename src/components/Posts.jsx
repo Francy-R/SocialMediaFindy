@@ -104,54 +104,77 @@ export default function Posts() {
     <div className="home__posts">
       {posts.posts.length
         ? posts.posts.map((post) => (
-          <div key={post.id} className="home__post">
-
-            <div className="home__post-content">
-
-              <div className="home__post-content-header">
-                <div className="home__post-content-header-user">
+            <div key={post.id} className="home__post">
+              <div className="home__post-content">
+                <div className="home__post-content-header">
+                  <div className="home__post-content-header-user">
+                    <img
+                      src={post.userPhoto}
+                      alt={post.userName}
+                      className="home__post-content-header-user-img"
+                    />
+                  </div>
+                  <b>{post.userName}</b>
+                </div>
+  
+                {/* Renderizado condicional del contenido basado en la categoría */}
+                {post.categoria === "Imagen" && (
                   <img
-                    src={post.userPhoto}
-                    alt={post.userName}
-                    className="home__post-content-header-user-img"
+                    className="home__post-content-img"
+                    src={post.recursos[0]}
+                    alt="post"
                   />
+                )}
+                {post.categoria === "Album" && (
+                  <div className="album-container">
+                    {post.recursos.map((resource, index) => (
+                      <img
+                        key={index}
+                        className="album-image"
+                        src={resource}
+                        alt={`Imagen ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
+                {post.categoria === "Video" && (
+                  <iframe
+                    className="home__post-content-video"
+                    title="video"
+                    src={post.recursos[0]}
+                    frameborder="0"
+                    allowfullscreen
+                  ></iframe>
+                )}
+  
+                <div className="home__post-content-icons">
+                  <div>
+                    <FaRegHeart />
+                    <p>{post.likes.length}</p>
+                  </div>
+                  <div>
+                    <TbMessageCircle2 />
+                    <p>{post.commentsCount}</p>
+                  </div>
+                  <div>
+                    <FiSend />
+                    <p>{getRandomNumber()}</p>
+                  </div>
+                  <div>
+                    <FaRegBookmark />
+                  </div>
                 </div>
-                <b>{post.userName}</b>
+  
+                <div className="home__post-content-footer">
+                  <p>
+                    <b>{post.userName}</b> {post.descripcion}
+                  </p>
+                </div>
               </div>
-
-              <img className="home__post-content-img" src={post.recursos[0]} alt="post" />
-
-
-              <div className="home__post-content-icons">
-                <div>
-                  <FaRegHeart />
-                  <p>{post.likes.length}</p>
-                </div>
-                <div>
-                  <TbMessageCircle2 />
-                  <p>{post.commentsCount}</p>
-                </div>
-                <div>
-                  <FiSend />
-                  <p>{getRandomNumber()}</p>
-                </div>
-                <div>
-
-                <FaRegBookmark />
-                </div>
-              </div>
-
-              <div className="home__post-content-footer">
-                <p>
-                  <b>{post.userName}</b> {post.descripcion}
-                </p>
-              </div>
-
             </div>
-
-          </div>
-        ))
+          ))
         : null}
     </div>
   );
+  
 }
