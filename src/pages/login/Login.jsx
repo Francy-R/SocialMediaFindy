@@ -54,8 +54,8 @@ const Login = () => {
         <>
             <main className="loginContenido">
                 <StyledLogin>
-                    <img src="/src/assets/LOGO arriba.png" classname="imageLogo" />
-                    <img src="/src/assets/LOGO abajo.png" classname="imageLogo" />
+                    <img src="/src/assets/LOGO arriba.png" className="imageLogo" />
+                    <img src="/src/assets/LOGO abajo.png" className="imageLogo" />
                     <h1>Inicio de sesión</h1>
                     <StyledForm onSubmit={handleSubmit}>
                         <div className="cajitalogin">
