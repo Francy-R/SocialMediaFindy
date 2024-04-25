@@ -5,7 +5,7 @@ const endpoints = {
     getAllUsers: `${URL_BASE}usuarios`,
     getUser: (idUser) => `${URL_BASE}usuarios?id=${idUser}`,
     getAllPosts: `${URL_BASE}publicaciones`,
-    getCommentsByPostId : (idPost)=> `${URL_BASE}comentarios?idPublicacion=${idPost}`
+    getCommentsByPostId : (idPost)=> `${URL_BASE}comentarios?idPublicacion=${idPost}`,
+    users:`${URL_BASE}usuarios`,
 }
-
 export default endpoints;
