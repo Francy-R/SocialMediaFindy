@@ -106,28 +106,17 @@ export default function Posts() {
       {posts.posts.length
         ? posts.posts.map((post) => (
 
-          <div key={post.id}>
-            <div className="home__posts-header">
-              <div className="home__posts-header-user">
-                <NavLink to={`/perfil/:${post.id}`}>
-                  <img
-                    src={post.userPhoto}
-                    alt={post.userName}
-                    className="home__posts-header-user-img"
-                  />
-                </NavLink>
-              </div>
-            </div>
-
             <div key={post.id} className="home__post">
               <div className="home__post-content">
                 <div className="home__post-content-header">
                   <div className="home__post-content-header-user">
+                  <NavLink to={`/perfil/:${post.id}`}>
                     <img
                       src={post.userPhoto}
                       alt={post.userName}
                       className="home__post-content-header-user-img"
                     />
+                    </NavLink>
                   </div>
                   <b>{post.userName}</b>
                 </div>
@@ -187,23 +176,10 @@ export default function Posts() {
                   </p>
                 </div>
 
-                <div>
-                  <FiSend />
-                  <p></p>
-                </div>
-                <FaRegBookmark />
-              </div>
-              <div className="home__posts-footer">
-
-                <p>
-                  <b>{post.userName}</b> {post.descripcion}
-                </p>
-
-
               </div>
             </div>
 
-          </div>))
+          ))
         : null}
     </div>
   );
