@@ -20,8 +20,10 @@ export const getAllPosts = async () => {
         return []
     }
 }
+
   
 export const getUser = async (idUser) => {
+
     try {
         const { data } = await axios.get(endpoints.getUser(idUser));
         return data
@@ -55,6 +57,9 @@ export const getUserByEmailAndPassword = async ({ userName, password }) => {
     }
 }
 
+
+
+
 export const createUser = async (newUser) => {
     try {
       const response = await axios.post(endpoints.users, newUser);
@@ -64,3 +69,4 @@ export const createUser = async (newUser) => {
       return null
     }
   }
+
