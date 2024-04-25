@@ -59,7 +59,7 @@ export const getUserByEmailAndPassword = async ({ userName, password }) => {
 
 export const createPost = async (newPost) => {
     try {
-      const response = await axios.post(endpoints.users, newUser);
+      const response = await axios.post(endpoints.posts, newPost);
       return response;
     } catch (error) {
       console.log(error);

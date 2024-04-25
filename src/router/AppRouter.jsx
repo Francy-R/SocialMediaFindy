@@ -1,4 +1,4 @@
-import { createContext, useState} from "react";
+import { createContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Register from "../pages/login/Register";
@@ -16,7 +16,9 @@ const AppRouter = () => {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="register" element={<Register />} />
-                    <Route path="home" element={<Home/>} />
+                    <Route path="layout" element={<Layout />}>
+                        <Route path="home" element={<Home />} />
+                    </Route>
                 </Routes>
 
             </BrowserRouter>
